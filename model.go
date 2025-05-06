@@ -1,6 +1,7 @@
 package aijobrecommender
 
 import (
+	"os"
 	"time"
 
 	"gorm.io/gorm"
@@ -64,6 +65,15 @@ type TblJobsRecommendation struct {
 	CreatedOn  time.Time
 	ModifiedOn time.Time
 	ModifiedBy int
+}
+
+type JobRecommendationRequest struct {
+    ResumeFilePath string
+    ResumeData     []byte
+    UserSkills     []string
+    CandidateID    int
+    URL            string
+    JSONFile       *os.File
 }
 
 func GetJobsListBySkills(skills []string, DB *gorm.DB) (jobList []Jobs, err error) {
